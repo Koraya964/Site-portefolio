@@ -98,4 +98,30 @@ document.addEventListener("DOMContentLoaded", () => {
             if (mainContent) mainContent.style.opacity = 1;
         }, 2500);
     });
+
+    const heroText = document.getElementById("heroText");
+    const lines = [
+        "Initialisation du système...",
+        "Chargement de l’interface NieraUI...",
+        "Authentification de l’utilisateur...",
+        "Accès autorisé. Bienvenue, explorateur."
+    ];
+
+    let lineIndex = 0;
+    let charIndex = 0;
+
+    function typeLine() {
+        if (charIndex < lines[lineIndex].length) {
+            heroText.textContent += lines[lineIndex].charAt(charIndex);
+            charIndex++;
+            setTimeout(typeLine, 40);
+        } else {
+            heroText.textContent += "\n";
+            charIndex = 0;
+            lineIndex++;
+            if (lineIndex < lines.length) setTimeout(typeLine, 800);
+            else document.getElementById("discoverBtn").classList.add("visible");
+        }
+    }
+    typeLine();
 });
