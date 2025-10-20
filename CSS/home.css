@@ -160,19 +160,24 @@ body {
 
 /* ---------- Typing Text ---------- */
 .tap-text {
-    display: inline-block;
-    overflow: hidden;
-    white-space: nowrap;
-    border-right: .15em solid #7b776c;
-    font-size: 1.2rem;
-    margin-top: 1rem;
-    opacity: 0.9;
-    animation: caretBlink 0.8s infinite;
+    border-right: none;
+    animation: none;
 }
 
+/* Animation du curseur */
 @keyframes caretBlink {
-    50% {
+
+    0%,
+    50%,
+    100% {
+        border-color: #7b776c;
+        /* visible */
+    }
+
+    25%,
+    75% {
         border-color: transparent;
+        /* invisible */
     }
 }
 
@@ -265,4 +270,205 @@ body {
     to {
         background-position: 0 50px;
     }
+}
+
+body.pa-body {
+    font-family: 'Orbitron', sans-serif;
+    background-color: #f3efdc;
+    color: #3a362a;
+    transition: all .6s;
+    overflow-x: hidden;
+}
+
+.pa-hover-glow:hover {
+    box-shadow: 0 0 10px rgba(58, 54, 42, .3);
+    transform: translateY(-2px);
+}
+
+/* --- CRT overlay fixe --- */
+.pa-crt-overlay {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    background: repeating-linear-gradient(rgba(0, 0, 0, 0.04),
+            rgba(0, 0, 0, 0.04) 2px,
+            transparent 2px,
+            transparent 4px);
+    z-index: 40;
+    mix-blend-mode: multiply;
+}
+
+/* --- Balayage vertical (scanline animée) --- */
+.pa-crt-scan {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 41;
+    background: linear-gradient(to bottom,
+            rgba(255, 255, 255, 0.15) 0%,
+            rgba(255, 255, 255, 0.0) 80%);
+    animation: pa-crt-scan-move 5s linear infinite;
+    mix-blend-mode: overlay;
+}
+
+@keyframes pa-crt-scan-move {
+    0% {
+        transform: translateY(-100%);
+    }
+
+    100% {
+        transform: translateY(100%);
+    }
+}
+
+/* --- Glitch du titre --- */
+.pa-glitch {
+    position: relative;
+    color: #3a362a;
+    animation: pa-glitchAnim 1s infinite;
+}
+
+@keyframes pa-glitchAnim {
+    0% {
+        text-shadow: 2px 0 #bfb894, -2px 0 #504c43;
+    }
+
+    20% {
+        text-shadow: -2px 0 #bfb894, 2px 0 #504c43;
+    }
+
+    40% {
+        text-shadow: 2px 2px #bfb894, -2px -2px #504c43;
+    }
+
+    60% {
+        text-shadow: -2px 2px #bfb894, 2px -2px #504c43;
+    }
+
+    80% {
+        text-shadow: 2px -2px #bfb894, -2px 2px #504c43;
+    }
+
+    100% {
+        text-shadow: 2px 0 #bfb894, -2px 0 #504c43;
+    }
+}
+
+#pa-boot-screen {
+    position: fixed;
+    inset: 0;
+    background-color: #f3efdc;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 50;
+}
+
+#pa-boot-text {
+    color: #3a362a;
+    font-size: 1.125rem;
+    margin-bottom: 1rem;
+    white-space: pre-line;
+}
+
+main.pa-main {
+    opacity: 0;
+    transition: opacity 0.7s ease;
+}
+
+body {
+    font-family: 'Orbitron', sans-serif;
+    background-color: #f3efdc;
+    color: #3a362a;
+    transition: all 0.6s;
+}
+
+.bbh-hover-glow:hover {
+    box-shadow: 0 0 10px rgba(58, 54, 42, .3);
+    transform: translateY(-2px);
+}
+
+/* CRT overlay */
+.bbh-crt-overlay {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    background: repeating-linear-gradient(rgba(0, 0, 0, 0.03),
+            rgba(0, 0, 0, 0.03) 2px,
+            transparent 2px,
+            transparent 4px);
+    z-index: 9999;
+    animation: bbh-flicker 0.15s infinite alternate;
+}
+
+.bbh-crt-scanline {
+    position: absolute;
+    top: -5%;
+    left: 0;
+    width: 100%;
+    height: 10%;
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0));
+    animation: bbh-scan 5s linear infinite;
+}
+
+@keyframes bbh-flicker {
+
+    0%,
+    100% {
+        opacity: 0.9;
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
+
+@keyframes bbh-scan {
+    from {
+        top: -10%;
+    }
+
+    to {
+        top: 110%;
+    }
+}
+
+/* Boot screen */
+#bbh-boot-screen {
+    position: fixed;
+    inset: 0;
+    background-color: #f3efdc;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 50;
+}
+
+#bbh-boot-text {
+    color: #3a362a;
+    font-size: 1.125rem;
+    margin-bottom: 1rem;
+    white-space: pre-line;
+}
+
+main {
+    opacity: 0;
+    transition: opacity 0.7s ease;
+}
+
+.charBlink {
+    display: inline-block;
+    width: 0.15em;
+    height: 1em;
+    background-color: #7b776c;
+    vertical-align: bottom;
+    margin-left: 0.05em;
+    animation: blink 0.8s steps(1) infinite;
+}
+
+@keyframes blink {
+    0%,50%,100% { opacity: 1; }
+    25%,75% { opacity: 0; }
 }

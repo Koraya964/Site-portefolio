@@ -4,107 +4,30 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Projet Alpha – Julien Raynaud</title>
+    <title>Projet  – System[JR]</title>
 
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdn.jsdelivr.net/npm/daisyui@5/themes.css" rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
-
-    <style>
-        body {
-            font-family: 'Orbitron', sans-serif;
-            background-color: #f3efdc;
-            color: #3a362a;
-            transition: all .6s;
-        }
-
-        .hover-glow:hover {
-            box-shadow: 0 0 10px rgba(58, 54, 42, .3);
-            transform: translateY(-2px);
-        }
-
-        .crt-overlay {
-            position: fixed;
-            inset: 0;
-            pointer-events: none;
-            background: repeating-linear-gradient(rgba(0, 0, 0, 0.03),
-                    rgba(0, 0, 0, 0.03) 2px,
-                    transparent 2px,
-                    transparent 4px);
-            z-index: 40;
-        }
-
-        .glitch {
-            position: relative;
-            color: #3a362a;
-            animation: glitchAnim 1s infinite;
-        }
-
-        @keyframes glitchAnim {
-            0% {
-                text-shadow: 2px 0 #bfb894, -2px 0 #504c43;
-            }
-
-            20% {
-                text-shadow: -2px 0 #bfb894, 2px 0 #504c43;
-            }
-
-            40% {
-                text-shadow: 2px 2px #bfb894, -2px -2px #504c43;
-            }
-
-            60% {
-                text-shadow: -2px 2 #bfb894, 2px -2px #504c43;
-            }
-
-            80% {
-                text-shadow: 2px -2 #bfb894, -2px 2 #504c43;
-            }
-
-            100% {
-                text-shadow: 2px 0 #bfb894, -2px 0 #504c43;
-            }
-        }
-
-        #bootScreen {
-            position: fixed;
-            inset: 0;
-            background-color: #f3efdc;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            z-index: 50;
-        }
-
-        #bootText {
-            color: #3a362a;
-            font-size: 1.125rem;
-            margin-bottom: 1rem;
-        }
-
-        main {
-            opacity: 0;
-            transition: opacity 0.7s ease;
-        }
-    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">  
+    <link href="../CSS/home.css" rel="stylesheet">
 </head>
 
-<body class="min-h-screen flex flex-col">
+<body class="min-h-screen flex flex-col pa-body">
 
     <!-- BOOT SCREEN -->
-    <div id="bootScreen">
-        <h1 class="text-4xl font-bold glitch mb-4">SYSTEM[JR]</h1>
-        <p id="bootText"></p>
+    <div id="pa-boot-screen">
+        <h1 class="text-4xl font-bold pa-glitch mb-4">SYSTEM[JR]</h1>
+        <p id="pa-boot-text"></p>
         <div class="mt-6 w-24 h-1 bg-[#3a362a] animate-pulse"></div>
     </div>
 
-    <!-- CRT overlay -->
-    <div class="crt-overlay"></div>
+    <!-- CRT overlay & scanline -->
+    <div class="pa-crt-overlay"></div>
+    <div class="pa-crt-scan"></div>
 
     <!-- HEADER -->
     <header class="p-4 border-b border-[#8c886f] flex items-center justify-between bg-[#f3efdc]/80 backdrop-blur z-10">
-        <h1 class="text-lg font-bold">SYSTEM[JR] / Projet Alpha</h1>
+        <h1 class="text-lg font-bold">PROJET SYSTEM[JR] ver.1.009874.9623648b</h1>
         <nav aria-label="Navigation principale" class="flex gap-2">
             <a href="index.html" class="btn btn-xs btn-neutral hover:scale-105 transition-all">Accueil</a>
             <a href="contact.html" class="btn btn-xs btn-outline hover:scale-105 transition-all">Contact</a>
@@ -112,8 +35,9 @@
     </header>
 
     <!-- MAIN CONTENT -->
-    <main class="flex-1 overflow-y-auto scrollbar-thin scrollbar-thumb-[#8c886f] scrollbar-track-[#f3efdc] p-6">
-        <div class="max-w-5xl mx-auto bg-[#f3efdc]/70 border border-[#8c886f] rounded-lg p-6 hover-glow transition-all">
+    <main class="flex-1 overflow-y-auto scrollbar-thin scrollbar-thumb-[#8c886f] scrollbar-track-[#f3efdc] p-6 pa-main">
+        <div
+            class="max-w-5xl mx-auto bg-[#f3efdc]/70 border border-[#8c886f] rounded-lg p-6">
 
             <!-- Titre & infos -->
             <section class="mb-8">
@@ -168,11 +92,11 @@
                 <h3 class="text-xl font-semibold mb-2 border-b border-[#8c886f] pb-1">Galerie</h3>
                 <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
                     <img src="https://placehold.co/400x250/e3debc/1a1a1a?text=Preview+1" alt="Capture 1"
-                        class="rounded border border-[#8c886f] hover-glow transition-all" />
+                        class="rounded border border-[#8c886f] pa-hover-glow transition-all" />
                     <img src="https://placehold.co/400x250/e3debc/1a1a1a?text=Preview+2" alt="Capture 2"
-                        class="rounded border border-[#8c886f] hover-glow transition-all" />
+                        class="rounded border border-[#8c886f] pa-hover-glow transition-all" />
                     <img src="https://placehold.co/400x250/e3debc/1a1a1a?text=Preview+3" alt="Capture 3"
-                        class="rounded border border-[#8c886f] hover-glow transition-all" />
+                        class="rounded border border-[#8c886f] pa-hover-glow transition-all" />
                 </div>
             </section>
 
@@ -184,28 +108,31 @@
         © 2025 Julien Raynaud — Tous droits réservés
     </footer>
 
+    <!-- =============================
+            SCRIPT JS
+    ============================== -->
     <script>
         document.addEventListener("DOMContentLoaded", () => {
-            const bootScreen = document.getElementById("bootScreen");
-            const bootText = document.getElementById("bootText");
-            const mainContent = document.querySelector("main");
-            const fullText = "Chargement de la page [Projet SYSTEM[JR]…";
-            let index = 0;
+            const paBootScreen = document.getElementById("pa-boot-screen");
+            const paBootText = document.getElementById("pa-boot-text");
+            const paMainContent = document.querySelector("main.pa-main");
+            const paFullText = "Chargement de la page [Projet SYSTEM[JR]]...\nInitialisation des modules graphiques...\nConnexion à NieraUI...";
+            let paIndex = 0;
 
-            function typeBootText() {
-                if (index <= fullText.length) {
-                    bootText.textContent = fullText.slice(0, index);
-                    index++;
-                    setTimeout(typeBootText, 40);
+            function paTypeBootText() {
+                if (paIndex <= paFullText.length) {
+                    paBootText.textContent = paFullText.slice(0, paIndex);
+                    paIndex++;
+                    setTimeout(paTypeBootText, 40);
                 }
             }
-            typeBootText();
+            paTypeBootText();
 
             window.addEventListener("load", () => {
                 setTimeout(() => {
-                    bootScreen.style.display = "none";
-                    mainContent.style.opacity = 1;
-                }, 2500);
+                    paBootScreen.style.display = "none";
+                    paMainContent.style.opacity = 1;
+                }, 2800);
             });
         });
     </script>
