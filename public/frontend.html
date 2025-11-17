@@ -4,11 +4,11 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Projet  – System[JR]</title>
+    <title>Projet – System[JR]</title>
 
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdn.jsdelivr.net/npm/daisyui@5/themes.css" rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">  
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
     <link href="../CSS/home.css" rel="stylesheet">
 </head>
 
@@ -35,9 +35,8 @@
     </header>
 
     <!-- MAIN CONTENT -->
-    <main class="flex-1 overflow-y-auto scrollbar-thin scrollbar-thumb-[#8c886f] scrollbar-track-[#f3efdc] p-6 pa-main">
-        <div
-            class="max-w-5xl mx-auto bg-[#f3efdc]/70 border border-[#8c886f] rounded-lg p-6">
+    <main class="flex-1 mt-6 overflow-y-auto scrollbar-thin scrollbar-thumb-[#8c886f] scrollbar-track-[#f3efdc] p-6 pa-main">
+        <div class="max-w-5xl mx-auto bg-[#f3efdc]/70 border border-[#8c886f] rounded-lg p-6">
 
             <!-- Titre & infos -->
             <section class="mb-8">
@@ -136,7 +135,55 @@
             });
         });
     </script>
+    <script>
+        async function fetchNodeWiki() {
+            try {
+                const res = await fetch('https://fr.wikipedia.org/api/rest_v1/page/summary/Node.js');
+                if (!res.ok) throw new Error('Impossible de récupérer les données');
+                const data = await res.json();
 
+                // Injecter les informations principales
+                document.getElementById('node-title').textContent = data.title;
+                document.getElementById('node-description').textContent = data.extract;
+                document.getElementById('node-link').href = data.content_urls.desktop.page;
+                document.getElementById('node-wiki').href = data.content_urls.desktop.page;
+                if (data.originalimage) {
+                    document.getElementById('node-image').src = data.originalimage.source;
+                }
+
+                // Stack technique (exemple statique mais tu peux l’adapter dynamiquement)
+                const stackList = ["JavaScript", "Node.js", "Express", "NPM", "MongoDB"];
+                const stackUl = document.getElementById('node-stack');
+                stackList.forEach(item => {
+                    const li = document.createElement('li');
+                    li.textContent = item;
+                    stackUl.appendChild(li);
+                });
+
+                // Galerie (exemple statique pour placeholders)
+                const galleryDiv = document.getElementById('node-gallery');
+                const galleryImages = [
+                    "https://placehold.co/400x250/e3debc/1a1a1a?text=Preview+1",
+                    "https://placehold.co/400x250/e3debc/1a1a1a?text=Preview+2",
+                    "https://placehold.co/400x250/e3debc/1a1a1a?text=Preview+3"
+                ];
+                galleryImages.forEach(src => {
+                    const img = document.createElement('img');
+                    img.src = src;
+                    img.alt = "Preview Node.js";
+                    img.className = "rounded border border-[#8c886f] pa-hover-glow transition-all";
+                    galleryDiv.appendChild(img);
+                });
+
+            } catch (err) {
+                console.error(err);
+                document.getElementById('node-description').textContent = "Impossible de charger les informations Wiki.";
+            }
+        }
+
+        // Lancer la récupération
+        fetchNodeWiki();
+    </script>
 </body>
 
 </html>

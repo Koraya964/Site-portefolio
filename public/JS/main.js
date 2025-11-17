@@ -129,7 +129,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const screen = document.getElementById(screenId);
         const textElement = document.getElementById(textId);
         if (screen && textElement) {
-            // Typewriter pour boot screens
+            // Marqueur de saisi pour boot screens
             let i = 0;
             function typeBoot() {
                 if (i <= text.length) {
